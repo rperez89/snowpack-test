@@ -1,21 +1,35 @@
 {
   "scripts": {
-    "start": "snowpack dev",
-    "build": "snowpack build",
-    "test": "jest",
-    "format": "prettier --write \"src/**/*.{js,jsx}\"",
-    "lint": "prettier --check \"src/**/*.{js,jsx}\""
+    "start": "snowpack dev" ,
+    "start:local": "cross-env REACT_APP_CHAIN_ID=1337 yarn start",
+    "start:rinkeby": "cross-env REACT_APP_CHAIN_ID=4 yarn start",
+    "start:xdai": "cross-env REACT_APP_CHAIN_ID=100 yarn start",
+    "build": "npm run sync-assets && snowpack build",
+    "build:xdai": "cross-env REACT_APP_CHAIN=100 && yarn build",
+    "sync-assets": "copy-aragon-ui-assets ./public"
   },
   "dependencies": {
+    "@1hive/1hive-ui": "^1.0.2",
+    "@1hive/connect-thegraph-conviction-voting": "^0.1.7",
+    "@1hive/uniswap-sdk": "^1.0.0",
+    "@aragon/connect": "^0.3.0",
+    "bignumber.js": "^9.0.0",
+    "clipboard-polyfill": "^3.0.0-pre5",
+    "ethers": "4.0.28",
     "react": "^16.13.1",
-    "react-dom": "^16.13.1"
+    "react-dom": "^16.13.1",
+    "react-router-dom": "^5.2.0",
+    "react-scripts": "^3.4.1",
+    "react-spring": "^8.0.27",
+    "styled-components": "^4.3.2",
+    "use-wallet": "^0.5.0",
+    "web3-utils": "^1.2.0"
   },
   "devDependencies": {
     "@snowpack/app-scripts-react": "^1.8.3",
-    "@testing-library/jest-dom": "^5.5.0",
-    "@testing-library/react": "^10.0.3",
-    "jest": "^25.4.0",
-    "prettier": "^2.0.5",
-    "snowpack": "^2.7.6"
+    "@snowpack/plugin-babel":"^2.0.2",
+    "cross-env": "^7.0.2",
+    "snowpack": "^2.7.6",
+    "prettier": "^2.0.5"
   }
 }
